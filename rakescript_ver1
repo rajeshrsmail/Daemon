@@ -1,0 +1,14 @@
+case $1 in
+
+start) cd /home/selva/GetMocha;
+       rake jobs:work > /tmp/jobswork.out 2>&1 &
+       PID=$(expr `echo $$` + 1)
+       echo $PID > /tmp/jobswork.pid
+       ;;
+
+stop) kill -9 `cat /tmp/jobswork.pid` ;;
+
+*) echo "Usage: jobswork {start| stop} ";;
+esac
+exit 0
+
