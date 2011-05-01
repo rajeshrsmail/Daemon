@@ -1,0 +1,12 @@
+case $1 in
+start)
+      /usr/bin/socky -c /root/current/config/socky.yml >/tmp/socky.out 2>&1 & 
+      pgrep socky > /var/run/socky.pid 
+ ;;
+stop)   
+     kill -9 `cat /var/run/socky.pid` ;;
+  *)  
+       echo "usage: socky {start|stop}" ;;
+ esac
+ exit 0
+
