@@ -1,13 +1,13 @@
 case $1 in
 start)
-      /usr/bin/socky -c /root/current/config/socky.yml >/tmp/socky.out 2>&1 & 
-      pgrep socky > /var/run/socky.pid 
+ /usr/bin/socky -c /root/current/config/socky.yml > /tmp/socky.out 2>&1 & 
+PID=$(expr `echo $$` + 1)
+echo $PID > /var/run/socky.pid
+
  ;;
-stop)   
+stop)
      kill -9 `cat /var/run/socky.pid` ;;
-  *)  
+  *)
        echo "usage: socky {start|stop}" ;;
  esac
  exit 0
-
-#This is the end of the program
